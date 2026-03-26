@@ -35,7 +35,7 @@ const About = () => {
             I work with front-end and back-end technologies to build user-friendly and efficient solutions.
           </p>
           <a
-            href="https://docs.google.com/document/d/1f6KD_gEW2jETFJBVaHQlymhzwKdY-W6X/edit?usp=sharing&ouid=107394016595270127078&rtpof=true&sd=true"
+            href="https://drive.google.com/file/d/1D51eI4_UtIPz_W5JeZmnlFFgFDkhivEZ/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-white py-4 px-10 rounded-2xl mt-5 text-lg font-bold transition-all duration-300 transform hover:scale-105 hover:bg-white/10 border border-white/5 bg-gradient-primary shadow-glow hover:shadow-primary-500/25"
