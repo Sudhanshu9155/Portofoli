@@ -105,7 +105,7 @@ const Education = () => {
               ref={el => cardRefs.current[index] = el}
               className={`opacity-0 transition-all duration-700 ease-out
                 ${index % 2 === 0 ? '-translate-x-16' : 'translate-x-16'}
-                w-full sm:w-[45%] p-4 sm:p-6 rounded-2xl border border-white/10 bg-gray-900/80 backdrop-blur-md
+                w-full sm:w-[45%] p-4 sm:p-6 rounded-2xl border border-white/10 bg-card backdrop-blur-md
                 shadow-[0_0_30px_rgba(130,69,236,0.15)] hover:shadow-[0_0_40px_rgba(99,102,241,0.3)]
                 hover:border-primary-500/40 hover:scale-[1.02] transform transition-all duration-300`}
             >

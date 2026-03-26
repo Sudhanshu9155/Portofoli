@@ -62,19 +62,23 @@ const Navbar = ({ theme, onToggleTheme }) => {
         className={`transition-all duration-300 rounded-full border border-white/10 px-4 lg:px-5 py-2.5 flex justify-between items-center
           ${
             isScrolled
-              ? "bg-black/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] border-white/15"
+              ? theme === "light"
+                ? "bg-white/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(15,23,42,0.12)] border-slate-300/60"
+                : "bg-black/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] border-white/15"
+              : theme === "light"
+              ? "bg-white/70 backdrop-blur-md shadow-[0_2px_16px_rgba(15,23,42,0.08)] border-slate-300/50"
               : "bg-white/5 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.3)]"
           }`}
       >
         <div className="text-base lg:text-lg font-display font-medium cursor-pointer shrink-0">
           <span className="text-primary-500">&lt;</span>
-          <span className="text-white">Sudhanshu</span>
+          <span className={theme === "light" ? "text-slate-900" : "text-white"}>Sudhanshu</span>
           <span className="text-primary-500">/</span>
-          <span className="text-white">Kumar</span>
+          <span className={theme === "light" ? "text-slate-900" : "text-white"}>Kumar</span>
           <span className="text-primary-500">&gt;</span>
         </div>
 
-        <ul className="hidden lg:flex items-center gap-5 xl:gap-7 text-gray-300 text-sm xl:text-base">
+        <ul className={`hidden lg:flex items-center gap-5 xl:gap-7 text-sm xl:text-base ${theme === "light" ? "text-slate-700" : "text-gray-300"}`}>
           {menuItems.map((item) => (
             <li
               key={item.id}
@@ -91,7 +95,11 @@ const Navbar = ({ theme, onToggleTheme }) => {
           <button
             type="button"
             onClick={onToggleTheme}
-            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400 hover:border-primary-400/50 transition-all duration-300 flex items-center justify-center"
+            className={`w-10 h-10 rounded-full transition-all duration-300 flex items-center justify-center ${
+              theme === "light"
+                ? "border border-slate-300 bg-white text-slate-700 hover:text-primary-500 hover:border-primary-400/70"
+                : "border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400 hover:border-primary-400/50"
+            }`}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
@@ -102,7 +110,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             href="https://github.com/Sudhanshu9155"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-primary-400 transition-colors duration-300 hover-scale"
+            className={`${theme === "light" ? "text-slate-700" : "text-gray-300"} hover:text-primary-400 transition-colors duration-300 hover-scale`}
           >
             <FaGithub size={24} />
           </a>
@@ -110,7 +118,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-primary-400 transition-colors duration-300 hover-scale"
+            className={`${theme === "light" ? "text-slate-700" : "text-gray-300"} hover:text-primary-400 transition-colors duration-300 hover-scale`}
           >
             <FaLinkedin size={24} />
           </a>
@@ -120,7 +128,11 @@ const Navbar = ({ theme, onToggleTheme }) => {
           <button
             type="button"
             onClick={onToggleTheme}
-            className="w-9 h-9 rounded-full border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400 transition-all duration-300 flex items-center justify-center"
+            className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center ${
+              theme === "light"
+                ? "border border-slate-300 bg-white text-slate-700 hover:text-primary-500"
+                : "border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400"
+            }`}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
