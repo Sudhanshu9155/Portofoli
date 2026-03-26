@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Test / coverage output
+coverage
+*.lcov
+
+# Build caches
+.cache
+.parcel-cache
+.eslintcache
+
+# Misc
+Thumbs.db
