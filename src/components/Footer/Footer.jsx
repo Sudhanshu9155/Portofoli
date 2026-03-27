@@ -36,8 +36,8 @@ const Footer = () => {
         </nav>
 
         {/* Social Media Icons - Responsive */}
-        <div className="flex flex-wrap justify-center space-x-4 mt-6">
-          {[
+        {/* <div className="flex flex-wrap justify-center space-x-4 mt-6"> */}
+          {/* {[
             { icon: <FaFacebook />, link: "facebook.com/skedit01" },
             { icon: <FaTwitter />, link: "twitter.com/skedit01?s=09" },
             { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/tarun-kaushik-553b441a4" },
@@ -55,7 +55,7 @@ const Footer = () => {
               {item.icon}
             </a>
           ))}
-        </div>
+        </div> */}
 
         {/* Copyright Text */}
         <p className="text-sm text-gray-400 mt-6">
