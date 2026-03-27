@@ -110,7 +110,7 @@ export const education = [
     img: lpu,
     school: "Lovely Professional University, Phagwara",
     date: "Aug 2023 - July 2027",
-    grade: "7.25 CGPA",
+    grade: "7.40 CGPA",
     desc: "I am currently pursuing my Bachelor of Technology (B.Tech) in Computer Science and Engineering from Lovely Professional University (LPU), Phagwara. During my studies, I have been developing a strong foundation in programming, software development, and computer science principles. My coursework includes subjects such as Data Structures, Algorithms, Object-Oriented Programming, Database Management Systems, Web Development, and Software Engineering. I actively participate in technical workshops, hackathons, and coding competitions that enhance my practical skills and problem-solving abilities. My ongoing journey at LPU is helping me strengthen my technical knowledge and preparing me for a successful career in the field of technology.",
     degree: "Bachelor of Technology - B.Tech (Computer Science and Engineering)",
   },
