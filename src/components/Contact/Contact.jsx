@@ -9,9 +9,6 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const toastTheme =
-      document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
-
     emailjs
       .sendForm("service_af9ysfd", "template_93d7ufr", form.current, "KUawlnKaU68_a5J1s")
       .then(
@@ -20,11 +17,7 @@ const Contact = () => {
           toast.success("Message sent successfully", {
             position: "top-right",
             autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: toastTheme,
+            theme: "dark",
           });
         },
         (error) => {
@@ -32,69 +25,39 @@ const Contact = () => {
           toast.error("Failed to send message. Please try again.", {
             position: "top-right",
             autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: toastTheme,
+            theme: "dark",
           });
         }
       );
   };
 
   return (
-    <section
-      id="contact"
-      className="flex flex-col items-center justify-center py-24 px-[5vw] lg:px-[10vw]"
-    >
+    <section id="contact" className="section-shell section-spacing contact-section">
       <ToastContainer />
 
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-black text-white">CONTACT</h2>
-        <p className="text-gray-400 mt-4 text-lg font-medium">
-          I would love to hear from you. Reach out for opportunities or questions.
-        </p>
+      <div className="section-header centered">
+        <span className="eyebrow">Let’s connect</span>
+        <h2>Contact</h2>
       </div>
 
-      <div className="mt-8 w-full max-w-md bg-card p-6 rounded-lg shadow-lg border border-white/10 backdrop-blur-md">
-        <h3 className="text-xl font-extrabold text-white text-center">Connect With Me</h3>
+      <div className="contact-panel surface-panel">
+        <div className="contact-copy">
+          <p>
+            I’m open to product, engineering, and design collaborations. If you’re building something ambitious,
+            I’d love to hear about it.
+          </p>
+          <div className="contact-meta">
+            <span>Email</span>
+            <a href="mailto:sudhanshukumar10000@gmail.com">sudhanshukumar10000@gmail.com</a>
+          </div>
+        </div>
 
-        <form ref={form} onSubmit={sendEmail} className="mt-4 flex flex-col space-y-4">
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            required
-            className="w-full p-3 rounded-md bg-white/5 text-white border border-white/10 focus:outline-none focus:border-primary-500"
-          />
-          <input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            required
-            className="w-full p-3 rounded-md bg-white/5 text-white border border-white/10 focus:outline-none focus:border-primary-500"
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            required
-            className="w-full p-3 rounded-md bg-white/5 text-white border border-white/10 focus:outline-none focus:border-primary-500"
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="4"
-            required
-            className="w-full p-3 rounded-md bg-white/5 text-white border border-white/10 focus:outline-none focus:border-primary-500"
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-gradient-primary py-3 text-white font-medium rounded-md hover:opacity-90 transition"
-          >
-            Send
-          </button>
+        <form ref={form} onSubmit={sendEmail} className="contact-form">
+          <input type="text" name="user_name" placeholder="Your name" required />
+          <input type="email" name="user_email" placeholder="Email address" required />
+          <input type="text" name="subject" placeholder="Subject" required />
+          <textarea name="message" rows="5" placeholder="Message" required />
+          <button type="submit" className="primary-button full-width">Send message</button>
         </form>
       </div>
     </section>

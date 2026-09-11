@@ -5,64 +5,62 @@ import profileImage from '../../assets/profile231.jpg';
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="py-4 px-[5vw] lg:px-[10vw] font-sans mt-16 md:mt-24 lg:mt-32 overflow-visible"
-    >
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16">
-        {/* Left Side — Text Content */}
-        <div className="md:w-1/2 text-center md:text-left mt-8 md:mt-0 flex-shrink-0">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2 leading-tight">
-            Hi, I am
+    <section id="about" className="section-shell hero-section">
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <span className="eyebrow">Available for product engineering roles</span>
+          <h1>
+            I design and build <span className="accent-text">human-centered</span> digital experiences.
           </h1>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight tracking-tight">
-            Sudhanshu Kumar
-          </h2>
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-4 leading-tight">
-            <span className="text-white opacity-90">I am a </span>
+          <div className="typing-wrap">
+            <span className="typing-prefix">I’m a</span>
             <ReactTypingEffect
-              text={['Fullstack Developer', 'UI/UX Designer', 'Software Engineer']}
+              text={['Full Stack Developer', 'UI/UX Engineer', 'Software Engineer']}
               speed={100}
-              eraseSpeed={50}
+              eraseSpeed={40}
               typingDelay={500}
               eraseDelay={2000}
-              cursorRenderer={(cursor) => <span className="gradient-text">{cursor}</span>}
-              className="gradient-text"
+              cursorRenderer={(cursor) => <span className="cursor-blink">{cursor}</span>}
+              className="typing-effect"
             />
-          </h3>
-          <p className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 mt-8 leading-relaxed font-medium max-w-xl">
-            I am a passionate MERN Developer skilled in creating dynamic and responsive web applications.
-            I work with front-end and back-end technologies to build user-friendly and efficient solutions.
+          </div>
+          <p>
+            I craft performant web applications with a strong focus on clean architecture, intuitive UX, and product-minded execution.
+            From frontend polish to API integrations and scalable user flows, I enjoy bringing ideas into usable, reliable products.
           </p>
-          <a
-            href="https://drive.google.com/file/d/1D51eI4_UtIPz_W5JeZmnlFFgFDkhivEZ/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-white py-4 px-10 rounded-2xl mt-5 text-lg font-bold transition-all duration-300 transform hover:scale-105 hover:bg-white/10 border border-white/5 bg-gradient-primary shadow-glow hover:shadow-primary-500/25"
-          >
-            DOWNLOAD CV
-          </a>
+
+          <div className="cta-row">
+            <a
+              href="https://drive.google.com/file/d/1D51eI4_UtIPz_W5JeZmnlFFgFDkhivEZ/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="primary-button"
+            >
+              Download CV
+            </a>
+            <a href="#contact" className="secondary-button">
+              Let’s talk
+            </a>
+          </div>
         </div>
 
-        {/* Right Side — Profile Image */}
-        <div className="md:w-1/2 flex justify-center md:justify-end flex-shrink-0">
+        <div className="hero-visual">
           <Tilt
-            className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 border-4 border-primary-600 rounded-full shadow-2xl relative"
-            tiltMaxAngleX={15}
-            tiltMaxAngleY={15}
+            className="portrait-frame"
+            tiltMaxAngleX={12}
+            tiltMaxAngleY={12}
             perspective={1200}
-            scale={1.02}
-            transitionSpeed={1500}
+            scale={1.03}
+            transitionSpeed={1200}
           >
-            {/* Background glow ring */}
-            <div className="absolute inset-[-10px] rounded-full bg-primary-500/20 blur-2xl -z-10 animate-pulse" />
-
-            <img
-              src={profileImage}
-              alt="Sudhanshu Kumar"
-              className="w-full h-full rounded-full object-cover shadow-[0_0_50px_rgba(37,99,235,0.3)] filter contrast-[1.1]"
-            />
+            <div className="portrait-ring" />
+            <img src={profileImage} alt="Sudhanshu Kumar" />
           </Tilt>
+
+          <div className="floating-card highlight-card">
+            <span className="card-label">Current focus</span>
+            <strong>Full-stack product builds</strong>
+          </div>
         </div>
       </div>
     </section>

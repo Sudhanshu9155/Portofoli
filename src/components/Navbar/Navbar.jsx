@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { FiMenu, FiX, FiMoon, FiSun } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const Navbar = ({ theme, onToggleTheme }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const sectionIds = ["about", "skills", "work", "education", "certificate", "achievement"];
+    const sectionIds = ["about", "skills", "work", "education", "certificate", "achievement", "contact"];
     const handleScrollSpy = () => {
-      const offset = 100;
-      let current = "";
+      const offset = 120;
+      let current = "about";
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (el) {
@@ -41,8 +32,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
 
     const section = document.getElementById(sectionId);
     if (section) {
-      const offset = 80;
-      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+      const top = section.getBoundingClientRect().top + window.scrollY - 90;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
@@ -54,137 +44,76 @@ const Navbar = ({ theme, onToggleTheme }) => {
     { id: "education", label: "Education" },
     { id: "certificate", label: "Certificates" },
     { id: "achievement", label: "Achievements" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92vw] max-w-5xl">
-      <div
-        className={`transition-all duration-300 rounded-full border border-white/10 px-4 lg:px-5 py-2.5 flex justify-between items-center
-          ${
-            isScrolled
-              ? theme === "light"
-                ? "bg-white/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(15,23,42,0.12)] border-slate-300/60"
-                : "bg-black/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] border-white/15"
-              : theme === "light"
-              ? "bg-white/70 backdrop-blur-md shadow-[0_2px_16px_rgba(15,23,42,0.08)] border-slate-300/50"
-              : "bg-white/5 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.3)]"
-          }`}
-      >
-        <div className="text-base lg:text-lg font-display font-medium cursor-pointer shrink-0">
-          <span className="text-primary-500">&lt;</span>
-          <span className={theme === "light" ? "text-slate-900" : "text-white"}>Sudhanshu</span>
-          <span className="text-primary-500">/</span>
-          <span className={theme === "light" ? "text-slate-900" : "text-white"}>Kumar</span>
-          <span className="text-primary-500">&gt;</span>
+    <header className="section-shell sticky top-4 z-50">
+      <nav className="nav-surface">
+        <div className="brand-mark" onClick={() => handleMenuItemClick("about")}>
+          <span className="brand-symbol">&lt;</span>
+          <span>Sudhanshu</span>
+          <span className="brand-divider">/</span>
+          <span>Kumar</span>
+          <span className="brand-symbol">&gt;</span>
         </div>
 
-        <ul className={`hidden lg:flex items-center gap-5 xl:gap-7 text-sm xl:text-base ${theme === "light" ? "text-slate-700" : "text-gray-300"}`}>
+        <ul className="nav-links hidden lg:flex">
           {menuItems.map((item) => (
-            <li
-              key={item.id}
-              className={`cursor-pointer transition-colors duration-300 hover:text-primary-400 ${
-                activeSection === item.id ? "text-primary-500 font-medium" : ""
-              }`}
-            >
-              <button onClick={() => handleMenuItemClick(item.id)}>{item.label}</button>
+            <li key={item.id}>
+              <button
+                type="button"
+                onClick={() => handleMenuItemClick(item.id)}
+                className={activeSection === item.id ? "nav-link active" : "nav-link"}
+              >
+                {item.label}
+              </button>
             </li>
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 shrink-0">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className={`w-10 h-10 rounded-full transition-all duration-300 flex items-center justify-center ${
-              theme === "light"
-                ? "border border-slate-300 bg-white text-slate-700 hover:text-primary-500 hover:border-primary-400/70"
-                : "border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400 hover:border-primary-400/50"
-            }`}
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
+        <div className="nav-actions hidden lg:flex">
+          <a href="https://github.com/Sudhanshu9155" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
+            <FaGithub size={18} />
+          </a>
+          <a href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9" target="_blank" rel="noreferrer" className="nav-icon" aria-label="LinkedIn">
+            <FaLinkedin size={18} />
+          </a>
+          <button type="button" onClick={() => handleMenuItemClick("contact")} className="primary-button small-button">
+            Contact
           </button>
-
-          <a
-            href="https://github.com/Sudhanshu9155"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${theme === "light" ? "text-slate-700" : "text-gray-300"} hover:text-primary-400 transition-colors duration-300 hover-scale`}
-          >
-            <FaGithub size={24} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${theme === "light" ? "text-slate-700" : "text-gray-300"} hover:text-primary-400 transition-colors duration-300 hover-scale`}
-          >
-            <FaLinkedin size={24} />
-          </a>
         </div>
 
-        <div className="lg:hidden flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center ${
-              theme === "light"
-                ? "border border-slate-300 bg-white text-slate-700 hover:text-primary-500"
-                : "border border-white/20 bg-white/5 text-gray-200 hover:text-primary-400"
-            }`}
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
-          </button>
-
+        <div className="lg:hidden flex items-center gap-3">
+          <a href="https://github.com/Sudhanshu9155" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
+            <FaGithub size={18} />
+          </a>
           {isOpen ? (
-            <FiX
-              className="text-3xl text-primary-500 cursor-pointer transition-transform duration-300 hover:rotate-90"
-              onClick={() => setIsOpen(false)}
-            />
+            <FiX className="text-2xl text-ink cursor-pointer" onClick={() => setIsOpen(false)} />
           ) : (
-            <FiMenu
-              className="text-3xl text-primary-500 cursor-pointer transition-transform duration-300 hover:scale-110"
-              onClick={() => setIsOpen(true)}
-            />
+            <FiMenu className="text-2xl text-ink cursor-pointer" onClick={() => setIsOpen(true)} />
           )}
         </div>
-      </div>
+      </nav>
 
       {isOpen && (
-        <div className="absolute top-[calc(100%+8px)] left-1/2 transform -translate-x-1/2 w-4/5 glass-effect-strong z-50 rounded-xl shadow-professional animate-fade-in-up lg:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-6 text-gray-300">
-            {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`cursor-pointer transition-colors duration-300 hover:text-primary-400 ${activeSection === item.id ? "text-primary-500 font-medium" : ""}`}
-              >
-                <button onClick={() => handleMenuItemClick(item.id)}>{item.label}</button>
-              </li>
-            ))}
-            <div className="flex space-x-4 pt-2">
-              <a
-                href="https://github.com/Sudhanshu9155"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-primary-400 transition-colors duration-300"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-primary-400 transition-colors duration-300"
-              >
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </ul>
+        <div className="mobile-menu surface-panel">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => handleMenuItemClick(item.id)}
+              className={activeSection === item.id ? "mobile-link active" : "mobile-link"}
+            >
+              {item.label}
+            </button>
+          ))}
+          <a href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9" target="_blank" rel="noreferrer" className="nav-icon" aria-label="LinkedIn">
+            <FaLinkedin size={18} />
+          </a>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 
