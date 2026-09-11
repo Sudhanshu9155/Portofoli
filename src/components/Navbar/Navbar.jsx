@@ -26,6 +26,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScrollSpy);
   }, []);
 
+  useEffect(() => {
+    const handleViewportChange = () => {
+      if (window.innerWidth > 1100) setIsOpen(false);
+    };
+
+    window.addEventListener("resize", handleViewportChange);
+    handleViewportChange();
+    return () => window.removeEventListener("resize", handleViewportChange);
+  }, []);
+
   const handleMenuItemClick = (sectionId) => {
     setActiveSection(sectionId);
     setIsOpen(false);
@@ -58,7 +68,7 @@ const Navbar = () => {
           <span className="brand-symbol">&gt;</span>
         </div>
 
-        <ul className="nav-links hidden lg:flex">
+        <ul className="nav-links desktop-nav-links">
           {menuItems.map((item) => (
             <li key={item.id}>
               <button
@@ -72,7 +82,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="nav-actions hidden lg:flex">
+        <div className="nav-actions desktop-nav-actions">
           <a href="https://github.com/Sudhanshu9155" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
             <FaGithub size={18} />
           </a>
@@ -84,15 +94,16 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="lg:hidden flex items-center gap-3">
-          <a href="https://github.com/Sudhanshu9155" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
-            <FaGithub size={18} />
-          </a>
-          {isOpen ? (
-            <FiX className="text-2xl text-ink cursor-pointer" onClick={() => setIsOpen(false)} />
-          ) : (
-            <FiMenu className="text-2xl text-ink cursor-pointer" onClick={() => setIsOpen(true)} />
-          )}
+        <div className="mobile-nav-actions">
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
+          </button>
         </div>
       </nav>
 
@@ -108,9 +119,17 @@ const Navbar = () => {
               {item.label}
             </button>
           ))}
-          <a href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9" target="_blank" rel="noreferrer" className="nav-icon" aria-label="LinkedIn">
-            <FaLinkedin size={18} />
-          </a>
+          <div className="mobile-menu-actions">
+            <a href="https://github.com/Sudhanshu9155" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
+              <FaGithub size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/sudhanshu-kumar-7529863b9" target="_blank" rel="noreferrer" className="nav-icon" aria-label="LinkedIn">
+              <FaLinkedin size={18} />
+            </a>
+            <button type="button" onClick={() => handleMenuItemClick("contact")} className="primary-button small-button">
+              Contact
+            </button>
+          </div>
         </div>
       )}
     </header>

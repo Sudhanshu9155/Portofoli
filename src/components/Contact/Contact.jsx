@@ -48,7 +48,7 @@ const Contact = () => {
           </p>
           <div className="contact-meta">
             <span>Email</span>
-            <a href="mailto:sudhanshukumar10000@gmail.com">sudhanshukumar10000@gmail.com</a>
+            <a href="mailto:rajsudhanshu106@gmail.com">rajsudhanshu106@gmail.com</a>
           </div>
         </div>
 

@@ -304,6 +304,12 @@ button {
   padding: 0;
 }
 
+.mobile-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 0.65rem;
+}
+
 .nav-link,
 .mobile-link,
 .footer-links button {
@@ -346,6 +352,25 @@ button {
 }
 
 .nav-icon:hover {
+  color: var(--ink);
+  border-color: rgba(223, 81, 77, 0.8);
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 1px solid rgba(201, 213, 211, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink-muted);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
   color: var(--ink);
   border-color: rgba(223, 81, 77, 0.8);
 }
@@ -1092,21 +1117,80 @@ button {
 .mobile-menu {
   width: min(1200px, calc(100% - 0.75rem));
   margin: 0.5rem auto 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem;
   border-radius: 1rem;
   padding: 0.8rem 0.9rem;
   position: relative;
   z-index: 10;
+  animation: menuReveal 0.18s ease-out both;
 }
 
 .mobile-link {
-  text-align: left;
-  padding: 0.42rem 0.2rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  text-align: center;
+}
+
+.mobile-link.active,
+.mobile-link:focus-visible {
+  border-color: rgba(223, 81, 77, 0.5);
+  background: rgba(223, 81, 77, 0.1);
+}
+
+.mobile-menu-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(201, 213, 211, 0.16);
+}
+
+.mobile-menu-actions .small-button {
+  min-height: 2.2rem;
+}
+
+@keyframes menuReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .desktop-nav-links,
+  .desktop-nav-actions {
+    display: none;
+  }
+
+  .mobile-nav-actions {
+    display: flex;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .nav-surface {
+    padding-inline: 0.85rem;
+  }
 }
 
 @media (max-width: 900px) {
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
   .hero-grid,
   .contact-panel,
   .skills-grid,
@@ -1120,23 +1204,90 @@ button {
   .certificate-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .education-list {
+    grid-template-rows: none;
+  }
+
+  .education-card:nth-child(1),
+  .education-card:nth-child(2),
+  .education-card:nth-child(3) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .contact-copy {
+    padding: 0.25rem 0 0.75rem;
+  }
 }
 
 @media (max-width: 640px) {
   .section-shell {
-    width: min(100% - 1rem, 1200px);
+    width: min(100% - 1.5rem, 1200px);
   }
 
   .hero-section {
-    padding-top: 4rem;
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
   }
 
   .hero-copy h1 {
-    font-size: 2.7rem;
+    font-size: clamp(2.45rem, 12vw, 3.2rem);
   }
 
   .typing-wrap {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .hero-copy p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .cta-row,
+  .cta-row .primary-button,
+  .cta-row .secondary-button {
+    width: 100%;
+  }
+
+  .hero-visual {
+    padding-top: 1rem;
+  }
+
+  .portrait-frame {
+    width: min(100%, 21rem);
+  }
+
+  .floating-card {
+    left: 0.5rem;
+    bottom: 0.6rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .section-intro {
+    line-height: 1.6;
+  }
+
+  .nav-surface {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .brand-mark {
+    font-size: 0.92rem;
+  }
+
+  .mobile-menu {
+    width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .project-grid,
@@ -1149,8 +1300,61 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .skills-panel,
+  .education-card {
+    padding: 1.1rem;
+  }
+
+  .skill-item {
+    min-height: 5.8rem;
+  }
+
+  .certificate-preview {
+    height: 11rem;
+    padding-inline: 1.25rem;
+  }
+
+  .certificate-body {
+    min-height: 13.5rem;
+    padding: 1rem;
+  }
+
+  .project-image-wrap {
+    height: 12rem;
+  }
+
+  .project-body {
+    padding: 1rem;
+  }
+
   .contact-panel {
     padding: 1rem;
+  }
+
+  .contact-meta a {
+    overflow-wrap: anywhere;
+  }
+
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .modal-media {
+    min-height: 12rem;
+    padding: 0.75rem;
+  }
+
+  .modal-media img {
+    max-height: 35vh;
+  }
+
+  .modal-copy {
+    padding: 1.1rem 1rem 1.25rem;
+  }
+
+  .modal-actions .primary-button,
+  .modal-actions .secondary-button {
+    flex: 1 1 8rem;
   }
 }
 
